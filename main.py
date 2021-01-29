@@ -167,6 +167,9 @@ def main():
             t += end - start
 
         keep_playing = snake.get_action(key_stroke.decode('utf-8'))
+        if snake.size[0] * snake.size[1] <= snake.length:
+            print('You win!')
+            break
     print('Score:', snake.length)
     while True:
         again = input('Keep playing? (y/n)')
