@@ -153,8 +153,8 @@ class Snake:
 
 
 def main():
-    snake = Snake(15, 10)
-    update_time = .125
+    snake = Snake(15, 10)   # This mean the game field is 15x10
+    update_time = .125      # This is how much time there is between updates, 1/update_time = fps
     keep_playing = True
     while keep_playing:
         t = 0
