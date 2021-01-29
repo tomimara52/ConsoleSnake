@@ -19,6 +19,11 @@ class Snake:
         return {"w": "s", "s": "w", "d": "a", "a":"d"}
 
     def set_skins(self):
+        """
+        This iterates each snake part, and based where the adjacent ones are,
+        it gives it a skin between the following: │ ─ └ ┐ ┌ ┘
+
+        """
         skins = ['O']
         coords_subtraction = lambda a, b: [x1 - x2 for (x1, x2) in zip(a, b)]
         for i in range(1, len(self.parts)):
@@ -51,6 +56,11 @@ class Snake:
             self.skins = skins
 
     def print_in_coords(self):
+        """
+        Prints the field of game with '·',
+        prints the snake body parts,
+        prints the fruit ('X')
+        """
         coords = self.parts
         os.system('cls')
         for i in range(self.size[1], 0, -1):
@@ -64,6 +74,10 @@ class Snake:
             print('')
 
     def update_coors(self):
+        """
+        Makes every part of the snake move to where the following was,
+        except the head, that moves to the direction the user input
+        """
 
         for i in range(len(self.parts)-1, 0, -1):
             self.parts[i] = self.parts[i-1][:]
@@ -78,11 +92,18 @@ class Snake:
             self.parts[0][0] -= 1
 
     def check_fruit(self):
+        """
+        Checks if the snake's head is in the same place as the fruit,
+        if so, the snake grows and another fruit is spawned
+        """
         if self.parts[0] == self.fruit:
             self.grow()
             self.generate_fruit()
 
     def alive(self):
+        """
+        Check if the head hit a body part or has crossed the limits
+        """
         head = self.parts[0]
         if (head in self.parts[1:]) or (not(0 < head[0] <= self.size[0])) or (not(0 < head[1] <= self.size[1])):
             return False
