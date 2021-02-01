@@ -1,7 +1,6 @@
 # -*- coding: UTF-8 -*-
 import time
 import os
-import msvcrt
 from random import randint
 from getch import KBHit
 
