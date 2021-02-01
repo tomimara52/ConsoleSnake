@@ -3,6 +3,7 @@ import time
 import os
 import msvcrt
 from random import randint
+from getch import KBHit
 
 
 class Snake:
@@ -157,17 +158,18 @@ def main():
     snake = Snake(15, 10)   # This mean the game field is 15x10
     update_time = .125      # This is how much time there is between updates, 1/update_time = fps
     keep_playing = True
+    kb = KBHit()
     while keep_playing:
         t = 0
-        key_stroke = b' '
+        key_stroke = ' '
         while t < update_time:
             start = time.time()
-            if msvcrt.kbhit():
-                key_stroke = msvcrt.getch()
+            if kb.kbhit():
+                key_stroke = kb.getch()
             end = time.time()
             t += end - start
 
-        keep_playing = snake.get_action(key_stroke.decode('utf-8'))
+        keep_playing = snake.get_action(key_stroke)
         if snake.size[0] * snake.size[1] <= snake.length:
             print('You win!')
             break
@@ -182,8 +184,6 @@ def main():
             break
         else:
             print('Input a valid answer')
-
-
 
 if __name__ == "__main__":
     main()
