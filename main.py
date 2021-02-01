@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import time
 import os
 import msvcrt
@@ -62,7 +63,7 @@ class Snake:
         prints the fruit ('X')
         """
         coords = self.parts
-        os.system('cls')
+        os.system('cls' if os.name == 'nt' else 'clear')
         for i in range(self.size[1], 0, -1):
             for j in range(1, self.size[0]+1):
                 if [j, i] in coords:
@@ -181,6 +182,7 @@ def main():
             break
         else:
             print('Input a valid answer')
+
 
 
 if __name__ == "__main__":
