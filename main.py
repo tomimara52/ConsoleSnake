@@ -172,9 +172,10 @@ def main():
         if snake.size[0] * snake.size[1] <= snake.length:
             print('You win!')
             break
+    kb.set_normal_term()
     print('Score:', snake.length)
     while True:
-        again = input('Keep playing? (y/n)')
+        again = input('Keep playing? (y/n) ')
         if again.lower() == 'y':
             main()
             break
